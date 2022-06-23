@@ -1,0 +1,9 @@
+git add .
+git commit -m " comment goes here"
+git push origin main
+
+to push to heroku
+
+git push heroku main 
+
+npm run swagger
