@@ -1,43 +1,53 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Recipee Project",
+    "title": "Receipt API",
+    "description": "Receipt Project",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "virtual-receipts.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "http",
     "https"
   ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "A list of all the requests that partains to users in the database."
+    },
+    {
+      "name": "receipts",
+      "description": "A list of all the requests that partains to recipts in the database."
+    }
+  ],
   "paths": {
-    "/": {
+    "/user/{username}": {
       "get": {
-        "description": "",
-        "parameters": [],
+        "tags": ["users"],
+        "description": "Get a single user by searching for their username.",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "retrieved"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/recipe/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/user/": {
       "post": {
-        "description": "",
+        "tags": ["users"],
+        "description": "Creates a new user into the database.",
         "parameters": [
           {
             "name": "body",
@@ -45,16 +55,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "Food_Name": {
+                "username": {
                   "example": "any"
                 },
-                "Ingredient": {
+                "password": {
                   "example": "any"
                 },
-                "calories": {
+                "email": {
                   "example": "any"
                 },
-                "Direction": {
+                "privelage": {
                   "example": "any"
                 }
               }
@@ -71,12 +81,144 @@
         }
       }
     },
-    "/recipe/{id}": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
+    "/user/{userId}": {
+      "delete": {
+        "tags": ["users"],
+        "description": "Deletes a specified user from the database.",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
+        "responses": {
+          "204": {
+            "description": "deleted"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/receipt/": {
+      "get": {
+        "tags": ["receipts"],
+        "description": "Grabs all receipt information for a specified user.",
+        "parameters": [
+          {
+            "name": "usrId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of receipt information."
+          },
+          "500": {
+            "description":"Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["receipts"],
+        "description": "Adds a receipt to the database under a users id.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "2022-01-01"
+                },
+                "total": {
+                  "example": "15.31"
+                },
+                "store": {
+                  "example": "Walmart"
+                },
+                "city": {
+                  "example": "Rexburg"
+                },
+                "state": {
+                  "example": "ID"
+                },
+                "purchase_type": {
+                  "example": "Groceries"
+                },
+                "image": {
+                  "example": "to be determined"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/receipt/{recptId}": {
+      "get": {
+        "tags": ["receipts"],
+        "description": "Get a single receipt",
+        "parameters": [
+          {
+            "name": "recptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "data on the specified receipt."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/receipt/{date1,:date2}": {
+      "get": {
+        "tags": ["receipts"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "date1",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "date2",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/receipt/{id}": {
+      "delete": {
+        "tags": ["receipts"],
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -87,75 +229,12 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Food_Name": {
-                  "example": "any"
-                },
-                "Ingredient": {
-                  "example": "any"
-                },
-                "calories": {
-                  "example": "any"
-                },
-                "Direction": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
+            "description": "List of wanted receipts"
           },
           "500": {
             "description": "Internal Server Error"
           }
         }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/swagger/api-docs": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
       }
     }
   }

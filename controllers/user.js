@@ -3,25 +3,27 @@ const ObjectId = require('mongodb').ObjectId;
 
 const { validationResult } = require('express-validator');
 
-const getAll = async (req, res, next) => {
-  const result = await mongodb.getDb().db().collection('user').find();
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
-};
+const createUser = async (req, res) => {
+    const user = {
+      userame: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      privelage: req.body.privelage
+    };
+    const response = await mongodb.getDb().db().collection('user').insertOne(user);
+    if (response.acknowledged) {
+      res.status(201).json(response);
+    } else {
+      res.status(500).json(response.error || 'There was an error when creating the user.');
+    }
+  };
 
 const getSingle = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    
-    const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('users').remove({ _id: userId }, true);
+    const username = new ObjectId(req.params.username);
+    const response = await mongodb.getDb().db().collection('user').remove({ username: username }, true);
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(204).send();
@@ -29,3 +31,5 @@ const deleteUser = async (req, res) => {
       res.status(500).json(response.error || 'There was an error when deleting the user.');
     }
   };
+
+  module.exports = { getSingle, createUser, deleteUser};

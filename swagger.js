@@ -2,17 +2,18 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
   info: {
-    title: 'My API',
+    title: 'Receipt API',
     description: 'Receipt Project',
   },
  //test for localhost host: 'localhost:3000',
 //   host: 'personal-test1.herokuapp.com',
-    host:'localhost:8080',
+    host:'virtual-receipts.herokuapp.com',
   schemes: ['http', 'https'],
 };
 
-const outputFile = './swagger.json';
-const endpointsFiles = ['./server.js'];
+const outputFile = 'swagger.json';
+//const endpointsFiles = ['./server.js'];
+const endpointsFiles = ['routes/index.js'];
 
 /* NOTE: if you use the express Router, you must pass in the 
    'endpointsFiles' only the root file where the route starts,

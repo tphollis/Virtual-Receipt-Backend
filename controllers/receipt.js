@@ -35,3 +35,16 @@ const createReceipt = async (req, res) => {
     res.status(500).json(response.error || 'There was an error when creating the user.');
   }
 };
+
+const deleteReceipt = async (req, res) => {
+  const receiptId = new ObjectId(req.params.recptId);
+  const response = await mongodb.getDb().db().collection('receipt').remove({ _id: receiptId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'There was an error when deleting the contact.');
+  }
+};
+
+module.exports = { getAll, getSingle, getTimeRange, createReceipt, deleteReceipt};
