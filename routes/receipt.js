@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { body, param } = require('express-validator');
-const contactsController = require('../controllers/recepit');
+const contactsController = require('../controllers/receipt');
 
 router.get('/:usrId', contactsController.getAll);
 
@@ -9,7 +8,7 @@ router.get('/:recptId', contactsController.getSingle);
 
 router.get('/:date1/:date2', contactsController.getTimeRange);
 
-router.post('/', validator.recipt,contactsController.createReceipt);
+router.post('/', contactsController.createReceipt);
 
 router.delete('/:recptId', contactsController.deleteReceipt);
 

@@ -1,8 +1,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const { validationResult } = require('express-validator');
-
 const createUser = async (req, res) => {
     const user = {
       userame: req.body.username,
@@ -22,8 +20,8 @@ const getSingle = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res) => {
-    const username = new ObjectId(req.params.username);
-    const response = await mongodb.getDb().db().collection('user').remove({ username: username }, true);
+    const usrname = new ObjectId(req.params.username);
+    const response = await mongodb.getDb().db().collection('user').remove({ username: usrname }, true);
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(204).send();

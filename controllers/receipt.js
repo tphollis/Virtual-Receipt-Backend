@@ -1,10 +1,9 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-const { validationResult } = require('express-validator');
 
-const getAll = (req, res, next) => {
-  const userId = new ObjectId(req.params.usrId);
-  const result = await mongodb.getDb().db().collection('receipt').find({user_id: userId});
+const getAll = async (req, res, next) => {
+  const usrId = new ObjectId(req.params.usrId);
+  const result = await mongodb.getDb().db().collection('receipt').find({user_id: usrId});
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
