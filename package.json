@@ -2,7 +2,7 @@
   "name": "virtual-receipts",
   "version": "1.0.0",
   "engines": {
-    "node": ">6"
+    "node": "16.14.2"
   },
   "description": "Assignments",
   "main": "app.js",
