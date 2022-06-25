@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https:https://github.com/sadiqneymaA1/CSE341-node"
+    "url": "git+https://github.com/tphollis/Virtual-Receipt-Backend.git"
   },
-  "author": "Sadiq",
-  "license": "Abubakar",
+  "author": "Team 3",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sadiqneymaA1/CSE341-node"
+    "url": "https://github.com/tphollis/Virtual-Receipt_Backend/issues"
   },
-  "homepage": "https://github.com/sadiqneymaA1/CSE341-node",
+  "homepage": "https://github.com/tphollis/Virtual-Receipt-Backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
