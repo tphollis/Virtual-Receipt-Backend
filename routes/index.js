@@ -1,9 +1,7 @@
 const routes = require('express').Router();
 
-routes.get('/', (req, res) => {
-  res.send(' This My Recipt Project. I am making a Recipt.');
-  
-});
-routes.use('/recipt', require('./recipt'))
-routes.use('/swagger', require('./swagger'))
+routes.use('/user', require('./user'));
+routes.use('/receipt', require('./receipt'));
+routes.use('/', require('./swagger'));
+
 module.exports = routes;
