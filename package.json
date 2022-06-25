@@ -1,6 +1,9 @@
 {
   "name": "virtual-receipts",
   "version": "1.0.0",
+  "engines": {
+    "node": ">6"
+  },
   "description": "Assignments",
   "main": "app.js",
   "scripts": {
