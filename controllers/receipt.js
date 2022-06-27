@@ -16,9 +16,9 @@ const getSpecific = async (req, res, next) => {
   const value = new ObjectId(req.params.value);
   let result;
   if (field == "date"){
-    result = await mongodb.getDb().db().collection('receipt').find({field: value});
+    result = await mongodb.getDb().db().collection('receipt').find({date: value});
   } else if (field = "total"){
-    result = await mongodb.getDb().db().collection('receipt').find({field: value});
+    result = await mongodb.getDb().db().collection('receipt').find({total: value});
   } else if (field = "store"){
     result = await mongodb.getDb().db().collection('receipt').find({store: value});
   } else if (field = "city"){
@@ -36,6 +36,19 @@ const getSpecific = async (req, res, next) => {
 };
 
 const getTimeRange = async (req, res, next) => {
+  const date1 = new ObjectId(req.params.date1);
+  const date2 = new ObjectId(req.params.date2);
+  const result = await mongodb.getDb().db().collection('receipt').find({
+        date: {
+            $gte: ISODate(date1),
+            $lt: ISODate(date2)
+        }
+    });
+  console.log(result);
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
 };
 
 const createReceipt = async (req, res) => {

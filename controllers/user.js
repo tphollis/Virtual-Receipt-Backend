@@ -17,6 +17,13 @@ const createUser = async (req, res) => {
   };
 
 const getSingle = async (req, res, next) => {
+  const username = new ObjectId(req.params.username);
+  const result = await mongodb.getDb().db().collection('receipt').find({username: username});
+  console.log(result);
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
 };
 
 const deleteUser = async (req, res) => {
