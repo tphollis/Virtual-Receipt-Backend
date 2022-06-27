@@ -106,7 +106,7 @@
     "/receipt/": {
       "get": {
         "tags": ["receipts"],
-        "description": "Grabs all receipt information for a specified user. To display the reciept image, use img src=\"data:image/jpeg;base64,<BASE64 STRING>\"",
+        "description": "Grabs all receipt information for a specified user. To display the reciept image, use img src=\"data:image/jpeg;base64,BASE64_STRING\"",
         "parameters": [
           {
             "name": "usrId",
@@ -175,7 +175,7 @@
     "/receipt/{field}/{value}": {
       "get": {
         "tags": ["receipts"],
-        "description": "Get a single receipt based on the user is looking for. The available fields are: date, total, store, city, state, and purchase_type. To display the image, use img src=\"data:image/jpeg;base64,<BASE64 STRING>\"",
+        "description": "Get a single receipt based on the user is looking for. The available fields are: date, total, store, city, state, and purchase_type. To display the image, use img src=\"data:image/jpeg;base64,BASE64_STRING\"",
         "parameters": [
           {
             "name": "field",
