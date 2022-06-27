@@ -11,7 +11,28 @@ const getAll = async (req, res, next) => {
   });
 };
 
-const getSingle = async (req, res, next) => {
+const getSpecific = async (req, res, next) => {
+  const field = new ObjectId(req.params.field);
+  const value = new ObjectId(req.params.value);
+  let result;
+  if (field == "date"){
+    result = await mongodb.getDb().db().collection('receipt').find({field: value});
+  } else if (field = "total"){
+    result = await mongodb.getDb().db().collection('receipt').find({field: value});
+  } else if (field = "store"){
+    result = await mongodb.getDb().db().collection('receipt').find({store: value});
+  } else if (field = "city"){
+    result = await mongodb.getDb().db().collection('receipt').find({city: value});
+  } else if (field = "state"){
+    result = await mongodb.getDb().db().collection('receipt').find({state: value});
+  } else if (field = "purchase_type"){
+    result = await mongodb.getDb().db().collection('receipt').find({purchase_type: value});
+  }
+  console.log(result);
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
 };
 
 const getTimeRange = async (req, res, next) => {
@@ -47,4 +68,4 @@ const deleteReceipt = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getSingle, getTimeRange, createReceipt, deleteReceipt};
+module.exports = { getAll, getSpecific, getTimeRange, createReceipt, deleteReceipt};

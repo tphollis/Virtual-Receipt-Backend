@@ -106,7 +106,7 @@
     "/receipt/": {
       "get": {
         "tags": ["receipts"],
-        "description": "Grabs all receipt information for a specified user.",
+        "description": "Grabs all receipt information for a specified user. To display the reciept image, use <img src=\"data:image/jpeg;base64,<BASE64 STRING>\" />",
         "parameters": [
           {
             "name": "usrId",
@@ -126,7 +126,7 @@
       },
       "post": {
         "tags": ["receipts"],
-        "description": "Adds a receipt to the database under a users id.",
+        "description": "Adds a receipt to the database under a users id. Image will need to be saved as a base64. Please see https://stackoverflow.com/questions/17710147/image-convert-to-base64 to see how to convert an image to base64.",
         "parameters": [
           {
             "name": "body",
@@ -138,10 +138,10 @@
                   "example": "any"
                 },
                 "date": {
-                  "example": "2022-01-01"
+                  "example": "date format year-month-day"
                 },
                 "total": {
-                  "example": "15.31"
+                  "example": 15.31
                 },
                 "store": {
                   "example": "Walmart"
@@ -156,7 +156,7 @@
                   "example": "Groceries"
                 },
                 "image": {
-                  "example": "to be determined"
+                  "example": "image base64"
                 }
               }
             }
@@ -172,13 +172,19 @@
         }
       }
     },
-    "/receipt/{recptId}": {
+    "/receipt/{field}/{value}": {
       "get": {
         "tags": ["receipts"],
-        "description": "Get a single receipt",
+        "description": "Get a single receipt based on the user is looking for. The available fields are: date, total, store, city, state, and purchase_type. To display the image, use <img src=\"data:image/jpeg;base64,<BASE64 STRING>\" />",
         "parameters": [
           {
-            "name": "recptId",
+            "name": "field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
             "in": "path",
             "required": true,
             "type": "string"
@@ -194,7 +200,7 @@
         }
       }
     },
-    "/receipt/{date1,:date2}": {
+    "/receipt/{date1}/{date2}": {
       "get": {
         "tags": ["receipts"],
         "description": "",
