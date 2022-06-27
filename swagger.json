@@ -47,7 +47,7 @@
     "/user/": {
       "post": {
         "tags": ["users"],
-        "description": "Creates a new user into the database.",
+        "description": "Creates a new user into the database. Privilage is how much access to the webpage the user has.",
         "parameters": [
           {
             "name": "body",
@@ -56,16 +56,16 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "example": "string: johndoe56"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "string: P@55word"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "string: john.doe@email.com"
                 },
                 "privelage": {
-                  "example": "any"
+                  "example": "int32: 1"
                 }
               }
             }
@@ -135,22 +135,22 @@
               "type": "object",
               "properties": {
                 "user_id": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "date": {
-                  "example": "date format year-month-day"
+                  "example": "date format year-month-day: 2022-01-30"
                 },
                 "total": {
-                  "example": 15.31
+                  "example": "decimal128: 75.38"
                 },
                 "store": {
-                  "example": "Walmart"
+                  "example": "string: Walmart"
                 },
                 "city": {
-                  "example": "Rexburg"
+                  "example": "string: Denver"
                 },
                 "state": {
-                  "example": "ID"
+                  "example": "string: CO"
                 },
                 "purchase_type": {
                   "example": "Groceries"
