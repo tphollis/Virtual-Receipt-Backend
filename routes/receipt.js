@@ -4,9 +4,9 @@ const contactsController = require('../controllers/receipt');
 
 router.get('/:usrId', contactsController.getAll);
 
-router.get('/:field/:value', contactsController.getSpecific);
+router.get('/:field&:value', contactsController.getSpecific);
 
-router.get('/:date1/:date2', contactsController.getTimeRange);
+router.get('/:date1&:date2', contactsController.getTimeRange);
 
 router.post('/', contactsController.createReceipt);
 
