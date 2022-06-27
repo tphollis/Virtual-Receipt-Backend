@@ -192,7 +192,7 @@
         ],
         "responses": {
           "200": {
-            "description": "data on the specified receipt."
+            "description": "data on the receipt(s) that fit the request."
           },
           "500": {
             "description": "Internal Server Error"
@@ -218,7 +218,14 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "data on the receipt(s) that fit the request."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/receipt/{id}": {
@@ -234,8 +241,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "List of wanted receipts"
+          "204": {
+            "description": "deleted"
           },
           "500": {
             "description": "Internal Server Error"
