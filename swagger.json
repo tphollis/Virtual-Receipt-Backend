@@ -103,7 +103,7 @@
         }
       }
     },
-    "/receipt/": {
+    "/receipt/{usrId}": {
       "get": {
         "tags": ["receipts"],
         "description": "Grabs all receipt information for a specified user. To display the reciept image, use img src=\"data:image/jpeg;base64,BASE64_STRING\"",
