@@ -6,6 +6,6 @@ router.get('/:usrname', contactsController.getSingle);
 
 router.post('/', contactsController.createUser);
 
-router.delete('/:usrname', contactsController.deleteUser);
+router.delete('/:userId', contactsController.deleteUser);
 
 module.exports = router;
