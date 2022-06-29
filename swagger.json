@@ -81,13 +81,13 @@
         }
       }
     },
-    "/user/{userId}": {
+    "/user/{id}": {
       "delete": {
         "tags": ["users"],
         "description": "Deletes a specified user from the database.",
         "parameters": [
           {
-            "name": "userId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
