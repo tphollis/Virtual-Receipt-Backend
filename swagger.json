@@ -22,13 +22,13 @@
     }
   ],
   "paths": {
-    "/user/{username}": {
+    "/user/{usrname}": {
       "get": {
         "tags": ["users"],
         "description": "Get a single user by searching for their username.",
         "parameters": [
           {
-            "name": "username",
+            "name": "usrname",
             "in": "path",
             "required": true,
             "type": "string"

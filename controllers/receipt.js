@@ -2,7 +2,6 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res, next) => {
-  const usrId = new ObjectId(req.params.usrId);
   const result = await mongodb.getDb().db().collection('receipt').find({user_id: req.params.usrId});
   console.log(result);
   result.toArray().then((lists) => {

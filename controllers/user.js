@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const createUser = async (req, res) => {
     const user = {
-      userame: req.body.username,
+      username: req.body.username,
       password: req.body.password,
       email: req.body.email,
       privelage: req.body.privelage
@@ -17,9 +17,7 @@ const createUser = async (req, res) => {
   };
 
 const getSingle = async (req, res, next) => {
-  const username = new ObjectId(req.params.username);
-  const result = await mongodb.getDb().db().collection('user').find({username: req.params.username});
-  console.log(result);
+  const result = await mongodb.getDb().db().collection('user').find({username: req.params.usrname});
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
