@@ -25,13 +25,14 @@ const getSingle = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res) => {
-    const response = await mongodb.getDb().db().collection('user').remove({ _id: req.params.userId }, true);
-    console.log(response);
-    if (response.deletedCount > 0) {
-      res.status(204).send();
-    } else {
-      res.status(500).json(response.error || 'There was an error when deleting the user.');
-    }
-  };
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('user').remove({ _id: userId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'There was an error when deleting the user.');
+  }
+};
 
   module.exports = { getSingle, createUser, deleteUser};
