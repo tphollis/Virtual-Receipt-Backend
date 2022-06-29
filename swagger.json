@@ -56,16 +56,16 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "string: johndoe56"
+                  "example": "johndoe56"
                 },
                 "password": {
-                  "example": "string: P@55word"
+                  "example": "P@55word"
                 },
                 "email": {
-                  "example": "string: john.doe@email.com"
+                  "example": "john.doe@email.com"
                 },
                 "privelage": {
-                  "example": "int32: 1"
+                  "example": 1
                 }
               }
             }
