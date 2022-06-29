@@ -39,8 +39,8 @@ const getTimeRange = async (req, res, next) => {
   const date2 = new ObjectId(req.params.date2);
   const result = await mongodb.getDb().db().collection('receipt').find({
         date: {
-            $gte: ISODate(date1),
-            $lt: ISODate(date2)
+            $gte: Date(req.params.date1),
+            $lt: Date(req.params.date2)
         }
     });
   console.log(result);
@@ -52,8 +52,8 @@ const getTimeRange = async (req, res, next) => {
 
 const createReceipt = async (req, res) => {
   const receipt = {
-    user_id: req.body.usrId,
-    date: req.body.date,
+    user_id: req.body.user_id,
+    date: new Date(req.body.date),
     total: req.body.total,
     store: req.body.store,
     city: req.body.city,

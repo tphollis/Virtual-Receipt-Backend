@@ -5,7 +5,7 @@
     "description": "Receipt Project",
     "version": "1.0.0"
   },
-  "host": "virtual-receipts.herokuapp.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "http",
@@ -123,7 +123,9 @@
             "description":"Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/receipt/": {
       "post": {
         "tags": ["receipts"],
         "description": "Adds a receipt to the database under a users id. Image will need to be saved as a base64. Please see https://stackoverflow.com/questions/17710147/image-convert-to-base64 to see how to convert an image to base64.",
@@ -138,19 +140,19 @@
                   "example": "string"
                 },
                 "date": {
-                  "example": "date format year-month-day: 2022-01-30"
+                  "example": "2010-04-29"
                 },
                 "total": {
-                  "example": "decimal128: 75.38"
+                  "example": 75.38
                 },
                 "store": {
-                  "example": "string: Walmart"
+                  "example": "Walmart"
                 },
                 "city": {
-                  "example": "string: Denver"
+                  "example": "Denver"
                 },
                 "state": {
-                  "example": "string: CO"
+                  "example": "CO"
                 },
                 "purchase_type": {
                   "example": "Groceries"
