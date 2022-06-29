@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
 
 const getSingle = async (req, res, next) => {
   const username = new ObjectId(req.params.username);
-  const result = await mongodb.getDb().db().collection('receipt').find({username: req.params.username});
+  const result = await mongodb.getDb().db().collection('user').find({username: req.params.username});
   console.log(result);
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
