@@ -87,7 +87,7 @@
         "description": "Deletes a specified user from the database.",
         "parameters": [
           {
-            "name": "id",
+            "name": "recptId",
             "in": "path",
             "required": true,
             "type": "string"
