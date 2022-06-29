@@ -209,13 +209,13 @@
             "name": "date1",
             "in": "path",
             "required": true,
-            "type": "date"
+            "type": "string"
           },
           {
             "name": "date2",
             "in": "path",
             "required": true,
-            "type": "date"
+            "type": "string"
           }
         ],
         "responses": {
