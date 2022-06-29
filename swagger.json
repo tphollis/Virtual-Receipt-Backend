@@ -172,7 +172,7 @@
         }
       }
     },
-    "/receipt/{field}/{value}": {
+    "/receipt/find/{field}&{value}": {
       "get": {
         "tags": ["receipts"],
         "description": "Get a single receipt based on the user is looking for. The available fields are: date, total, store, city, state, and purchase_type. To display the image, use img src=\"data:image/jpeg;base64,BASE64_STRING\"",
@@ -200,7 +200,7 @@
         }
       }
     },
-    "/receipt/{date1}/{date2}": {
+    "/receipt/range/{date1}&{date2}": {
       "get": {
         "tags": ["receipts"],
         "description": "",
