@@ -15,7 +15,7 @@ const getSpecific = async (req, res, next) => {
   const value = req.params.value;
   let result;
   if (field == "date"){
-    result = await mongodb.getDb().db().collection('receipt').find({date: value});
+    result = await mongodb.getDb().db().collection('receipt').find({date: new Date(value)});
   } else if (field == "total"){
     result = await mongodb.getDb().db().collection('receipt').find({total: value});
   } else if (field == "store"){
@@ -35,12 +35,12 @@ const getSpecific = async (req, res, next) => {
 };
 
 const getTimeRange = async (req, res, next) => {
-  const date1 = new ObjectId(req.params.date1);
-  const date2 = new ObjectId(req.params.date2);
+  // const date1 = new ObjectId(req.params.date1);
+  // const date2 = new ObjectId(req.params.date2);
   const result = await mongodb.getDb().db().collection('receipt').find({
         date: {
-            $gte: Date(req.params.date1),
-            $lt: Date(req.params.date2)
+            $gte: new Date(req.params.date1),
+            $lt: new Date(req.params.date2)
         }
     });
   console.log(result);
