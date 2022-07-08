@@ -18,7 +18,11 @@ const getSpecific = async (req, res, next) => {
   if (field == "date"){
     result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, date: new Date(value)});
   } else if (field == "total"){
-    result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, total: Number(value)});
+    result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, total:{
+      $gte: parseInt(value),
+      $lt: parseInt(value)+.99
+    }
+  });
   } else if (field == "store"){
     result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, store: value});
   } else if (field == "city"){
