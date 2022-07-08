@@ -4,11 +4,13 @@ const contactsController = require('../controllers/receipt');
 
 router.get('/:usrId', contactsController.getAll);
 
-router.get('/find/:field&:value', contactsController.getSpecific);
+router.get('/find/:usrId&:field&:value', contactsController.getSpecific);
 
-router.get('/range/:date1&:date2', contactsController.getTimeRange);
+router.get('/range/:usrId&:date1&:date2', contactsController.getTimeRange);
 
 router.post('/', contactsController.createReceipt);
+
+router.put('/:id', contactsController.updateReceipt);
 
 router.delete('/:recptId', contactsController.deleteReceipt);
 
