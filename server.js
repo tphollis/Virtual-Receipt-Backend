@@ -34,7 +34,9 @@ app.use(cors())
 
 app
   .use(auth(config))
-  .use(bodyParser.json())
+  .use(bodyParser.json({limit: '50mb', extended: true}))
+  .use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
+  .use(bodyParser.text({ limit: '200mb' }))
   
   .get('/', (req, res) => {
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');})
