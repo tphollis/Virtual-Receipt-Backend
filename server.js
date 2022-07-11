@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
-const cors = require('cors');
+
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
-const { auth, requiresAuth } = require('express-openid-connect');
-require('dotenv').config();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
+const { auth } = require('express-openid-connect');
+
 const config = {
   authRequired: false,
   auth0Logout: true,
@@ -15,22 +17,6 @@ const config = {
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
-app.use(cors())
-// req.isAuthenticated is provided from the auth router
-/*app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-  //res.send(req.oidc);
-  //console.log(req.oidc.isAuthenticated());
-});*/
-
-/*app.get('/profile', requiresAuth(), (req,res) =>{
-    //res.send(JSON.stringify(req.oidc.user));
-    const user = req.openId?.oidc.user
-    res.status(200).json({user});
-});*/
-
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-
 
 app
   .use(auth(config))
@@ -38,13 +24,10 @@ app
   .use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
   .use(bodyParser.text({ limit: '200mb' }))
   
-  .get('/', (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');})
-  .get('/profile', requiresAuth(), (req,res) =>{
-      //res.send(JSON.stringify(req.oidc.user));
-      const user = req.openId?.oidc.user
-      res.status(200).json({user});
-  }).use('/', require('./routes'));
+  .get('/', (req, res, next) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  })
+  .use('/', require('./routes'));
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
