@@ -27,9 +27,6 @@ app
   .get('/', (req, res, next) => {
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
   })
-  // .get('/profile', requiresAuth(), (req, res) => {
-  //   res.send(JSON.stringify(req.oidc.user));
-  // })
   .use('/', require('./routes'));
 
 mongodb.initDb((err, mongodb) => {
