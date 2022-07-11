@@ -25,9 +25,7 @@ app
   .use(bodyParser.text({ limit: '200mb' }))
   
   .get('/', (req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin');
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-    next();
   })
   .use('/', require('./routes'));
 
