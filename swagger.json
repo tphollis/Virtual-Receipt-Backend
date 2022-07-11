@@ -44,63 +44,10 @@
         }
       }
     },
-    "/user/": {
+    "/login": {
       "post": {
         "tags": ["users"],
-        "description": "Creates a new user into the database. Privilage is how much access to the webpage the user has.",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "johndoe56"
-                },
-                "password": {
-                  "example": "P@55word"
-                },
-                "email": {
-                  "example": "john.doe@email.com"
-                },
-                "privelage": {
-                  "example": 1
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/user/{id}": {
-      "delete": {
-        "tags": ["users"],
-        "description": "Deletes a specified user from the database.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "deleted"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "description": "sends user to auth0 login page to either login or create a new account."
       }
     },
     "/receipt/{usrId}": {
