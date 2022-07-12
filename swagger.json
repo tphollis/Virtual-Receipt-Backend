@@ -13,6 +13,10 @@
   ],
   "tags": [
     {
+      "name": "auth0",
+      "description": "A list of of possible requests that allows a user to login, create an account, and logout."
+    },
+    {
       "name": "users",
       "description": "A list of all the requests that partains to users in the database."
     },
@@ -22,6 +26,28 @@
     }
   ],
   "paths": {
+    "/login": {
+      "get": {
+        "tags": ["auth0"],
+        "description": "This will lead the user to an auth0 login page where they can eaither login with existing credentails in the database or create new credentials in the database.",
+        "responses": {
+          "200": {
+            "description": "Logged in"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": ["auth0"],
+        "description": "This will logout the user.",
+        "responses": {
+          "200": {
+            "description": "Logged out"
+          }
+        }
+      }
+    },
     "/user/{usrname}": {
       "get": {
         "tags": ["users"],
@@ -44,10 +70,63 @@
         }
       }
     },
-    "/login": {
+    "/user/": {
       "post": {
         "tags": ["users"],
-        "description": "sends user to auth0 login page to either login or create a new account."
+        "description": "Creates a new user into the database. Privilage is how much access to the webpage the user has.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "johndoe56"
+                },
+                "password": {
+                  "example": "P@55word"
+                },
+                "email": {
+                  "example": "john.doe@email.com"
+                },
+                "privelage": {
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "delete": {
+        "tags": ["users"],
+        "description": "Deletes a specified user from the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "deleted"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/receipt/{usrId}": {
@@ -266,3 +345,4 @@
     }
   }
 }
+
