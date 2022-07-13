@@ -29,7 +29,7 @@
     "/login": {
       "get": {
         "tags": ["auth0"],
-        "description": "This will lead the user to an auth0 login page where they can eaither login with existing credentails in the database or create new credentials in the database.",
+        "description": "Use the link https://virtual-receipts.herokuapp.com/login to allow the user to login or create an account.",
         "responses": {
           "200": {
             "description": "Logged in"
@@ -43,7 +43,7 @@
     "/logout": {
       "get": {
         "tags": ["auth0"],
-        "description": "This will logout the user.",
+        "description": "Use the link https://virtual-receipts.herokuapp.com/logout to allow the user to logout.",
         "responses": {
           "200": {
             "description": "Logged out"
@@ -157,7 +157,7 @@
     "/receipt/find/{usrId}&{field}&{value}": {
       "get": {
         "tags": ["receipts"],
-        "description": "Get a single receipt based on the user is looking for. The available fields are: date, total, store, city, state, and purchase_type. To display the image, use img src=\"data:image/jpeg;base64,BASE64_STRING\"",
+        "description": "Gets specific receipts based on the user is looking for. The available fields are: _id, date, total, store, city, state, and purchase_type. To display the image, use img src=\"data:image/jpeg;base64,BASE64_STRING\"",
         "parameters": [
           {
             "name": "usrId",
@@ -191,7 +191,7 @@
     "/receipt/range/{usrId}&{date1}&{date2}": {
       "get": {
         "tags": ["receipts"],
-        "description": "Get a list of receipts within a time range. Make sure the date is in yyy-mm-dd format.",
+        "description": "Get a list of receipts within a time range. Make sure the date is in yyyy-mm-dd format.",
         "parameters": [
           {
             "name": "usrId",
