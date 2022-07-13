@@ -32,7 +32,7 @@ const getSpecific = async (req, res, next) => {
   } else if (field == "purchase_type"){
     result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, purchase_type: value});
   } else if (field == "_id" || field == "id"){
-    result = await mongodb.getDb().db().collection('receipt').find({_id: value});
+    result = await mongodb.getDb().db().collection('receipt').find({_id:value});
   }
   console.log(result);
   result.toArray().then((lists) => {
