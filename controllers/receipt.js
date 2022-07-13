@@ -31,8 +31,8 @@ const getSpecific = async (req, res, next) => {
     result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, state: value});
   } else if (field == "purchase_type"){
     result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, purchase_type: value});
-  } else if (field == "_id"){
-    result = await mongodb.getDb().db().collection('receipt').find({user_id:userId, receipt_id: value});
+  } else if (field == "_id" || field == "id"){
+    result = await mongodb.getDb().db().collection('receipt').find({_id: value});
   }
   console.log(result);
   result.toArray().then((lists) => {
