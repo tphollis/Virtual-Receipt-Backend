@@ -51,6 +51,17 @@
         }
       }
     },
+    "/profile": {
+      "get": {
+        "tags": ["auth0"],
+        "description": "Use the link https://virtual-receipts.herokuapp.com/profile to grab information about the logedin user.",
+        "responses": {
+          "200": {
+            "description": "Gives data about the loged in user."
+          }
+        }
+      }
+    },
     "/user/{usrname}": {
       "get": {
         "tags": ["users"],
