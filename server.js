@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 const config = {
   authRequired: false,
@@ -30,6 +31,10 @@ app
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
   })
   .use('/', require('./routes'));
+
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
