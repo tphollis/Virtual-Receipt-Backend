@@ -30,11 +30,10 @@ app
     next();
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
   })
+  .get('/profile', requiresAuth(), (req, res) => {
+    res.send(JSON.stringify(req.oidc.user));
+  })
   .use('/', require('./routes'));
-
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
