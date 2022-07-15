@@ -101,7 +101,7 @@ describe('Receipt Test Suite', () => {
 
   it('test put /:id endpoint', async() => {
     const body = {
-      "user_id": "62d1c729dae59700115bc8d",
+      "user_id": "62d1c729dae59700115bc8d4",
       "date": "2010-04-29",
       "total": 75.38,
       "store": "walmart",
@@ -116,7 +116,7 @@ describe('Receipt Test Suite', () => {
 
   it('test put /:id endpoint revert', async() => {
     const body = {
-      "user_id": "62d1c729dae59700115bc8d",
+      "user_id": "62d1c729dae59700115bc8d4",
       "date": "2010-04-29",
       "total": 75.38,
       "store": "walmart",
@@ -131,7 +131,7 @@ describe('Receipt Test Suite', () => {
 
   it('test put /:id endpoint id validation', async() => {
     const body = {
-      "user_id": "62d1c729dae59700115bc8d",
+      "user_id": "62d1c729dae59700115bc8d4",
       "date": "2010-04-29",
       "total": 75.38,
       "store": "walmart",

@@ -54,7 +54,7 @@ describe('User Test Suite', () => {
   });
 
   it('test delete /:id endpoints', async() => {
-    const response = await request('https://virtual-receipts2.herokuapp.com').delete("/user/62d1dc039496334306e2c2d3");
+    const response = await request('https://virtual-receipts2.herokuapp.com').delete("/user/62d1e061ac9b59a62fc0f922");
     expect(response.statusCode).toBe(204);
   });
 });
