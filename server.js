@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const mongodb = require('./db/connect');
 
 const dotenv = require('dotenv');
@@ -21,6 +22,7 @@ const config = {
 
 app
   .use(auth(config))
+  .use(cors())
   .use(bodyParser.json({limit: '50mb', extended: true}))
   .use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
   .use(bodyParser.text({ limit: '200mb' }))
