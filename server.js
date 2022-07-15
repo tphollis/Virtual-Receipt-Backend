@@ -27,8 +27,8 @@ app
   
   .get('/', (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+    next();
   })
   .get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
