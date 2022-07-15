@@ -115,6 +115,9 @@
           "201": {
             "description": "Created"
           },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -136,6 +139,9 @@
         "responses": {
           "204": {
             "description": "deleted"
+          },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
           },
           "500": {
             "description": "Internal Server Error"

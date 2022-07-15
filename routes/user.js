@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const contactsController = require('../controllers/user');
-
 const { body, param } = require('express-validator');
 
 router.get('/:usrname', contactsController.getSingle);
