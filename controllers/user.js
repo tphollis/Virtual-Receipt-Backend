@@ -1,7 +1,14 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
+const { validationResult } = require('express-validator');
+
 const createUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
     const user = {
       username: req.body.username,
       password: req.body.password,
@@ -25,6 +32,11 @@ const getSingle = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const userId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('user').remove({ _id: userId }, true);
   console.log(response);

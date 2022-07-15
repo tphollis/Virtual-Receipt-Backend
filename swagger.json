@@ -5,7 +5,7 @@
     "description": "Receipt Project",
     "version": "1.0.0"
   },
-  "host": "virtual-receipts.herokuapp.com",
+  "host": "virtual-receipts2.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "http",
