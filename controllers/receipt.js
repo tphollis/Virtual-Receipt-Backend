@@ -1,7 +1,13 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const { validationResult } = require('express-validator');
 
 const getAll = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const result = await mongodb.getDb().db().collection('receipt').find({user_id: req.params.usrId});
   console.log(result);
   result.toArray().then((lists) => {
@@ -11,6 +17,11 @@ const getAll = async (req, res, next) => {
 };
 
 const getSpecific = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const field = req.params.field;
   const value = req.params.value;
   const userId = req.params.usrId;
@@ -42,6 +53,11 @@ const getSpecific = async (req, res, next) => {
 };
 
 const getTimeRange = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   // const date1 = new ObjectId(req.params.date1);
   // const date2 = new ObjectId(req.params.date2);
   const userId = req.params.usrId;
@@ -59,6 +75,11 @@ const getTimeRange = async (req, res, next) => {
 };
 
 const updateReceipt = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const recptId = new ObjectId(req.params.id);
 
   const receipt = {
@@ -81,6 +102,11 @@ const updateReceipt = async (req, res) => {
 };
 
 const createReceipt = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const receipt = {
     user_id: req.body.user_id,
     date: new Date(req.body.date),
@@ -100,6 +126,11 @@ const createReceipt = async (req, res) => {
 };
 
 const deleteReceipt = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const receiptId = new ObjectId(req.params.recptId);
   const response = await mongodb.getDb().db().collection('receipt').remove({ _id: receiptId }, true);
   console.log(response);

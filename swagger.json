@@ -165,6 +165,9 @@
           "200": {
             "description": "list of receipt information."
           },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
+          },
           "500": {
             "description":"Internal Server Error"
           }
@@ -199,6 +202,9 @@
           "200": {
             "description": "data on the receipt(s) that fit the request."
           },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -232,6 +238,9 @@
         "responses": {
           "200": {
             "description": "data on the receipt(s) that fit the request."
+          },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
           },
           "500": {
             "description": "Internal Server Error"
@@ -281,6 +290,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
           },
           "500": {
             "description": "Internal Server Error"
@@ -337,6 +349,9 @@
           "204": {
             "description": "Edits Sucessfully Made"
           },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -356,6 +371,9 @@
         "responses": {
           "204": {
             "description": "deleted"
+          },
+          "400": {
+            "description": "Error: Bad Request (user information does not pass validation)"
           },
           "500": {
             "description": "Internal Server Error"

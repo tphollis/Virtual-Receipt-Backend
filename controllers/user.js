@@ -1,6 +1,5 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-
 const { validationResult } = require('express-validator');
 
 const createUser = async (req, res) => {
