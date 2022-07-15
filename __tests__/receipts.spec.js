@@ -49,7 +49,7 @@ describe('Receipt Test Suite', () => {
   });
 
   it('test get find/:usrId&:field&:value endpoint id validation', async() => {
-    const response = await request('https://virtual-receipts2.herokuapp.com').get("/receipt/find/62d1c729dae59700115bc8d4&date&2010-04-29");
+    const response = await request('https://virtual-receipts2.herokuapp.com').get("/receipt/find/62d1c729dae59700115bc8d&date&2010-04-29");
     expect(response.statusCode).toBe(400);
   });
 
@@ -146,7 +146,7 @@ describe('Receipt Test Suite', () => {
 
   it('test put /:id endpoint user_id validation', async() => {
     const body = {
-      "user_id": "62d1c729dae59700115bc8",
+      "user_id": "62d1c729dae59700115bc8d",
       "date": "2010-04-29",
       "total": 75.38,
       "store": "walmart",

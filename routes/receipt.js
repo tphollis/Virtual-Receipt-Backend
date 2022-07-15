@@ -22,6 +22,7 @@ router.post('/',
 
 router.put('/:id',
             param('id').isLength({min:24, max:24}),
+            body('user_id').isLength({min:24, max:24}),
             contactsController.updateReceipt);
 
 router.delete('/:recptId',
